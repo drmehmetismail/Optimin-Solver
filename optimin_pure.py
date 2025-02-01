@@ -102,9 +102,9 @@ if __name__ == "__main__":
     3,2 0,3
     2,2 -1,0
     """
-    SS1 = Matrix([[3, 0], 
+    S1 = Matrix([[3, 0], 
                   [2, -1]])
-    SS2 = Matrix([[2, 3], 
+    S2 = Matrix([[2, 3], 
                   [2,  0]])
 
     # 3x3 Illustrative Example from the optimin paper
@@ -116,8 +116,8 @@ if __name__ == "__main__":
                   [  0,   0,   1]])
 
     # Example usage with a small matrix
-    U_1 = SS1
-    U_2 = SS2
+    U_1 = S1
+    U_2 = S2
 
     """
     print('The game matrix is:')
