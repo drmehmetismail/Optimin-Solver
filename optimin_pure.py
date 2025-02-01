@@ -131,7 +131,7 @@ if __name__ == "__main__":
     frontier = pareto(pi_1, pi_2)
     coords = optimin(U_1, U_2, pi_1, pi_2)
 
-    print("Pareto frontier for (pi_1, pi_2):", frontier)
+    print("Performance function Pareto frontier (pi_1, pi_2):", frontier)
     for (x, y) in coords:
         print(f"Optimin coordinate: (x={x}, y={y}), original payoff = ({U_1[x-1,y-1]}, {U_2[x-1,y-1]})")
     print("Done. Computation took %.6f seconds" % (time.time() - start_time))
