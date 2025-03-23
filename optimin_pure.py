@@ -1,7 +1,7 @@
-
 # Find pure strategy optimin points in a two-player game
 from sympy import Matrix
 import time
+from sympy import *
 
 def performance_function(u_1, u_2):
     """
@@ -105,6 +105,18 @@ S2 = Matrix([[2, 3],
 # Another example: zero-sum game matrices
 zerosum1 = Matrix([[0,2], [3,1]])
 zerosum2 = Matrix([[0,-2], [-3,-1]])
+
+# Traveler's Dilemma:
+# Reward/punishment parameter
+r = 2
+def player1(i, j):
+    return Min(i+2, j+2) + r * sign(j-i)
+
+def player2(i,j):
+    return Min(i+2, j+2) +r * sign(i-j)
+
+TD1 = Matrix(99, 99, player1)
+TD2 = Matrix(99, 99, player2)
 
 # 3x3 Illustrative Example from the optimin paper (Figure 1)
 EP1 = Matrix([[100, 100,   0],
