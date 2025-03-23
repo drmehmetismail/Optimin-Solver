@@ -1,4 +1,5 @@
 
+# Find pure strategy optimin points in a two-player game
 from sympy import Matrix
 import time
 
@@ -90,48 +91,52 @@ def optimin(u_1, u_2, pi_1, pi_2):
                 coordinates.append((x+1, y+1))
     return coordinates
 
+# Example 2x2 game matrices
+"""
+This 2x2 game is represented by two matrices below.
+3,2 0,3
+2,2 -1,0
+"""
+S1 = Matrix([[3, 0], 
+                [2, -1]])
+S2 = Matrix([[2, 3], 
+                [2,  0]])
+
+# Another example: zero-sum game matrices
+zerosum1 = Matrix([[0,2], [3,1]])
+zerosum2 = Matrix([[0,-2], [-3,-1]])
+
+# 3x3 Illustrative Example from the optimin paper (Figure 1)
+EP1 = Matrix([[100, 100,   0],
+                [105,  95,   0],
+                [  0, 210,   1]])
+EP2 = Matrix([[100, 105,   0],
+                [100,  95, 210],
+                [  0,   0,   1]])
+
 if __name__ == "__main__":
     start_time = time.time()
 
-    # Example matrices
-    zerosum1 = Matrix([[0,2], [3,1]])
-    zerosum2 = Matrix([[0,-2], [-3,-1]])
-
-    """
-    The game matrix below is as follows: 
-    3,2 0,3
-    2,2 -1,0
-    """
-    S1 = Matrix([[3, 0], 
-                  [2, -1]])
-    S2 = Matrix([[2, 3], 
-                  [2,  0]])
-
-    # 3x3 Illustrative Example from the optimin paper
-    EP1 = Matrix([[100, 100,   0],
-                  [105,  95,   0],
-                  [  0, 210,   1]])
-    EP2 = Matrix([[100, 105,   0],
-                  [100,  95, 210],
-                  [  0,   0,   1]])
-
-    # Example usage with a small matrix
-    U_1 = S1
-    U_2 = S2
+    # Choose the game matrices for player 1 and player 2 here. See the examples above or create your own.
+    Player1_matrix = S1
+    Player2_matrix = S2
 
     """
     print('The game matrix is:')
-    print("U_1 =")
-    print(U_1)
-    print("U_2 =")
-    print(U_2)
+    print("Player1_matrix =")
+    print(Player1_matrix)
+    print("Player2_matrix =")
+    print(Player2_matrix)
     """
 
-    pi_1, pi_2 = performance_function(U_1, U_2)
+    pi_1, pi_2 = performance_function(Player1_matrix, Player2_matrix)
     frontier = pareto(pi_1, pi_2)
-    coords = optimin(U_1, U_2, pi_1, pi_2)
+    coords = optimin(Player1_matrix, Player2_matrix, pi_1, pi_2)
 
-    print("Pareto optimal performance values (pi_1, pi_2):", frontier)
+    print("For each player, each action is enumerated as 1,2,...:")
+    optimin_count = 1
     for (x, y) in coords:
-        print(f"Optimin coordinate: (x={x}, y={y}), original payoff = ({U_1[x-1,y-1]}, {U_2[x-1,y-1]})")
+        print(f"Optimin {optimin_count} action profile: (x={x}, y={y}) and its payoff profile = ({Player1_matrix[x-1,y-1]}, {Player2_matrix[x-1,y-1]})")
+        optimin_count += 1
+    print("Optimin profile performances (pi_1, pi_2):", frontier)
     print("Done. Computation took %.6f seconds" % (time.time() - start_time))
