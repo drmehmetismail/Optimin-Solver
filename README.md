@@ -10,7 +10,7 @@ Ensure that Python 3.8 and SymPy are installed.
 
 ## Citation
 > Mehmet S. Ismail (2025) Super-Nash Performance, *International Economic Review*, 2025; 00:1–17.  
-> https://doi.org/10.1111/iere.12764
+> [https://doi.org/10.1111/iere.12764](https://doi.org/10.1111/iere.12764)
 
 ```
 @article{ismail2025,
